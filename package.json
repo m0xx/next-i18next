@@ -26,8 +26,8 @@
     "lint": "eslint src examples __tests__",
     "lint:fix": "eslint src examples __tests__ --fix",
     "clean": "rm -rf dist && mkdir dist",
-    "build:es": "BABEL_ENV=es babel src --out-dir dist/es",
-    "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist/commonjs",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir dist/commonjs",
     "build": "yarn clean && yarn build:cjs && yarn build:es",
     "build:example": "cd examples/simple && yarn build",
     "prepublishOnly": "yarn build",
@@ -37,11 +37,6 @@
     "contributors:check": "all-contributors check",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint && yarn test"
-    }
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -57,6 +52,7 @@
     "babel-jest": "^24.1.0",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "^5.12.1",
